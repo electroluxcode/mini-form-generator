@@ -174,6 +174,8 @@
   },
   "devDependencies": {
     "@ant-design/icons": "^5.4.0",
-    "@types/webpack-env": "^1.18.4"
+    "@types/webpack-env": "^1.18.4",
+    "less": "^4.2.0",
+    "less-loader": "^12.2.0"
   }
 }

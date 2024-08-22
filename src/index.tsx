@@ -13,7 +13,7 @@ const root = ReactDOM.createRoot(
 // useLayoutEffect
 
 root.render(
-  <BrowserRouter>
+  <BrowserRouter basename='/electroluxcode'>
    <App />
    </BrowserRouter>
 );

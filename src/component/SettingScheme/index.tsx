@@ -3,20 +3,27 @@ import { CompProps, RecursiveCompProps } from "./type";
 
 // 引入 组件
 import { SchemaFieldComp } from '@/component/Material';
-
 // 递归组件
-const RecursiveComp: React.FC<RecursiveCompProps> | React.ElementType | any = ({ item }: RecursiveCompProps) => {
-  const { children, data, ...rest } = item;
+const RecursiveComp: React.FC<RecursiveCompProps> | React.ElementType | any = ({ item,customComponent }: RecursiveCompProps) => {
+  const { children, data, refOption,...rest } = item;
   let { Component } = item
+
+  let registerComp
+  registerComp = {
+    ...SchemaFieldComp["components"],
+    ...customComponent["components"],
+  }
+
+
   if (typeof Component === 'string') {
-    Component = SchemaFieldComp["components"][Component]
+    Component = registerComp[Component]
     if (!Component) {
       return <>no exist</>
     }
   }
   if(typeof Component === 'object') {
     if(!Component.key) {
-      
+      // return <>nokey</>
     }
     return <>{Component}</>
   }
@@ -27,28 +34,22 @@ const RecursiveComp: React.FC<RecursiveCompProps> | React.ElementType | any = ({
   const childElements = children ? (
     children.map((child,index) => {
       return isFunction(RecursiveComp) ?
-        RecursiveComp({ item: child,key:data?.compKey || index  }) :
-        <RecursiveComp item={child} key={data?.compKey || index}  />
+        RecursiveComp({ item: child,key:data?.compKey || index,customComponent  }) :
+        <RecursiveComp item={child} key={data?.compKey || index} customComponent={customComponent}  />
     })
   ) : null;
 
-  try{
-    return <Component  {...data}  key={data?.compKey || Math.random()*10000}>
+  return <Component  {...data}  key={data?.compKey || Math.random()*10000} >
     {childElements}
   </Component>
-  } catch {
-    return 
-  }
-
 };
 
 // 主组件
-const Comp: React.FC<CompProps> = ({ data }) => {
-  console.log("RecursiveComp:", data)
+const Comp: React.FC<CompProps> = ({ data,customComponent }) => {
   return (
     <>
-      {data.map((item, index) => (
-        <RecursiveComp key={item?.compKey || index} item={item} />
+      {data && data.length && Array.isArray(data) && data.map((item, index) => (
+        <RecursiveComp customComponent={customComponent} key={item?.compKey || index} item={item} />
       ))}
     </>
   );

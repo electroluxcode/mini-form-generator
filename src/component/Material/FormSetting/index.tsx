@@ -1,42 +1,42 @@
 
-import { Button, Form ,Space,type FormProps} from "antd";
+import { Button, Form, Input, Space, type FormProps ,type FormInstance} from "antd";
 import React from "react";
-import {omit}  from "lodash-es";
-
+import { omit } from "lodash-es";
+import { useContext } from 'react';
+// import { formContext } from "../Context";
+import { createContext } from "react";
+const formContext = createContext<FormInstance | null>(null)
 export const PlaceHolderSetting: React.FC<SettingProps & FormProps | any> = (props) => {
+
   const [form] = Form.useForm();
+
+  
   const onReset = () => {
     form.resetFields();
   };
   const onFinish = (values: any) => {
     console.log(values);
   };
-
+  const onClick = () => {
+    console.log(form.getFieldsValue())
+  }
   const tailLayout = {
     wrapperCol: { offset: 8, span: 16 },
   };
   return (
-    <Form form={form}>
-     {props.children}
+    <>
+      <formContext.Provider value={form}>
+        <Form form={form} >
 
-     <Form.Item {...tailLayout} style={{"width":"100%"}}>
-      
-         <div style={{width:"100%",display:"flex",justifyContent:"space-between"}}>
-         <Button type="primary" htmlType="submit">
-            Submit
-          </Button>
-          <Button htmlType="button" onClick={onReset}>
-            Reset
-          </Button>
-          <Button type="link" htmlType="button" >
-            Fill form
-          </Button>
-         </div>
-        
-      </Form.Item>
-    </Form>
+          {props.children}
 
+       
+        </Form>
+      </formContext.Provider>
+    </>
   );
 };
-
+export {
+  formContext
+}
 export default PlaceHolderSetting;

@@ -4,14 +4,15 @@ import React from "react";
 import {omit}  from "lodash-es";
 
 export const PlaceHolderSetting: React.FC<SettingProps & SwitchProps> = (props) => {
-  const componentProps  = omit(props,["name","label","className","style"])
+  const componentProps  = omit(props,["name","label","className","style","defaultValue","value"])
   return (
     <Form.Item
       name={props?.name}
       label={props?.label}
       className={props?.className}
       style={props?.style}
-      initialValue={props.defaultValue}
+      initialValue={props?.defaultValue}
+      valuePropName={"checked"}
     >
       <Switch
         {...componentProps}
