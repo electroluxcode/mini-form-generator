@@ -15,6 +15,9 @@ const RecursiveComp: React.FC<RecursiveCompProps> | React.ElementType | any = ({
     }
   }
   if(typeof Component === 'object') {
+    if(!Component.key) {
+      
+    }
     return <>{Component}</>
   }
   if (!Component) {
@@ -23,16 +26,14 @@ const RecursiveComp: React.FC<RecursiveCompProps> | React.ElementType | any = ({
   // 渲染 children 的递归调用
   const childElements = children ? (
     children.map((child,index) => {
-      console.log(33,RecursiveComp,data)
       return isFunction(RecursiveComp) ?
         RecursiveComp({ item: child,key:data?.compKey || index  }) :
         <RecursiveComp item={child} key={data?.compKey || index}  />
     })
   ) : null;
 
-  console.log("childElementsL", childElements,data)
   try{
-    return <Component  {...data}  key={data?.compKey || ''}>
+    return <Component  {...data}  key={data?.compKey || Math.random()*10000}>
     {childElements}
   </Component>
   } catch {

@@ -1,38 +1,29 @@
 import { CompProps } from "@/component/SettingScheme/type";
 
 export const CollapseJSON: CompProps["data"] = [{
-    Component: "Collapse",
+    Component: "Form",
     children: [
         {
-            Component: "CollapsePanelScheme",
+            Component: "Input",
             data: {
-                compKey: "basic",
-                title: "我是折叠面板一"
+                label:"dd",
+                placeholder: "我是折叠面板一"
             },
-            children: [
-                {
-                    Component: "ma",
-                    data:{
-                        compKey:"121",
-                    }
-                }
-            ],
         },
         {
-            Component: "CollapsePanelScheme",
+            Component: "Select",
             data: {
-                compKey: "advance",
-                title: "我是折叠面板二"
+                options:[{
+                    label: "选项一",
+                    value: "1"
+                },{
+                    label: "选项二",
+                    value: "2"
+                }],
+                defaultValue: "1"
             },
-            children: [
-                    {
-                        Component: <>你好</>
-                    }
-            ],
         },
     ],
     data: {
-        compKey:"1222",
-        defaultActiveKey: ["basic", "advance"],
     }
 }]
