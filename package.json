@@ -1,6 +1,7 @@
 {
   "name": "mini-form-generator",
   "version": "0.1.0",
+  "homepage":"/mini-form-generator/",
   "private": true,
   "dependencies": {
     "@babel/core": "^7.16.0",

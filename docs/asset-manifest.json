@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/static/css/main.9e603e89.css",
-    "main.js": "/static/js/main.8d85a472.js",
-    "index.html": "/index.html",
-    "main.9e603e89.css.map": "/static/css/main.9e603e89.css.map",
-    "main.8d85a472.js.map": "/static/js/main.8d85a472.js.map"
+    "main.css": "/mini-form-generator/static/css/main.9e603e89.css",
+    "main.js": "/mini-form-generator/static/js/main.b675593c.js",
+    "index.html": "/mini-form-generator/index.html",
+    "main.9e603e89.css.map": "/mini-form-generator/static/css/main.9e603e89.css.map",
+    "main.b675593c.js.map": "/mini-form-generator/static/js/main.b675593c.js.map"
   },
   "entrypoints": [
     "static/css/main.9e603e89.css",
-    "static/js/main.8d85a472.js"
+    "static/js/main.b675593c.js"
   ]
 }
