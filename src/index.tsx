@@ -13,7 +13,7 @@ const root = ReactDOM.createRoot(
 // useLayoutEffect
 
 root.render(
-  <BrowserRouter basename='/electroluxcode'>
+  <BrowserRouter basename='/mini-form-generator'>
    <App />
    </BrowserRouter>
 );
