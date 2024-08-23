@@ -532,7 +532,11 @@ module.exports = function (webpackEnv) {
     {
       importLoaders: 2,
       sourceMap: isEnvProduction && shouldUseSourceMap,
-      modules: true,
+      modules: {
+        exportLocalsConvention: "camelCaseOnly",
+        localIdentName: "[local]-[hash:base64:12]",
+        exportGlobals: true // 注意！:global 声明全局样式需要该属性
+      }
       
     },
     'less-loader'

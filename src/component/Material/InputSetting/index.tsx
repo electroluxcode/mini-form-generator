@@ -5,7 +5,7 @@ import {omit}  from "lodash-es";
 import { formContext } from "../FormSetting";
 
 export const PlaceHolderSetting: React.FC<SettingProps & InputProps> = (props) => {
-  const componentProps  = omit(props,["name","label","className","style","defaultValue"])
+  const componentProps  = omit(props,["name","label","className","style","defaultValue","compKey"])
   
   return (
 

@@ -32,25 +32,28 @@ const RecursiveComp: React.FC<RecursiveCompProps> | React.ElementType | any = ({
   }
   // 渲染 children 的递归调用
   const childElements = children ? (
-    children.map((child,index) => {
+    children.map((child) => {
       return isFunction(RecursiveComp) ?
-        RecursiveComp({ item: child,key:data?.compKey || index,customComponent  }) :
-        <RecursiveComp item={child} key={data?.compKey || index} customComponent={customComponent}  />
+        RecursiveComp({ item: child, key: child?.data?.compKey || Math.random(), customComponent }) :
+        <RecursiveComp item={child} key={child?.data?.compKey || Math.random()} customComponent={customComponent} />
     })
   ) : null;
 
-  return <Component  {...data}  key={data?.compKey || Math.random()*10000} >
+  return <div key={Math.random()}>
+    <Component  {...data}  key={data?.compKey || Math.random()*10000} >
     {childElements}
   </Component>
+  </div>
 };
 
 // 主组件
 const Comp: React.FC<CompProps> = ({ data,customComponent }) => {
   return (
     <>
-      {data && data.length && Array.isArray(data) && data.map((item, index) => (
-        <RecursiveComp customComponent={customComponent} key={item?.compKey || index} item={item} />
-      ))}
+      {data && data.length && Array.isArray(data) && data.map((item, index) => {
+
+        return <RecursiveComp customComponent={customComponent} key={item?.data?.compKey || index} item={item} />
+      })}
     </>
   );
 };

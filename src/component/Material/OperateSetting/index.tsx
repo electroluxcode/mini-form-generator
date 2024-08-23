@@ -9,7 +9,7 @@ export const PlaceHolderSetting: React.FC<SettingProps & InputProps> = (props) =
   const componentProps = omit(props, ["name", "label", "className", "style", "defaultValue"])
   let form = useContext(formContext)
   const onClick = () => {
-    console.log("form:", form.getFieldsValue())
+    console.log("form:", form)
     message.success("请到控制台查看输出信息")
   }
   const onReset = ()=>{

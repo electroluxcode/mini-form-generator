@@ -6,14 +6,21 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
+body{
+  background: rgb(249, 249, 249); margin-right: 24px;
+}
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-
+.ant-form-item-label label{
+  font-weight: 600 !important;
+  font-size:16px !important
+}
 .ant-form-item{
-  margin-bottom: 20px !important;
+  margin-bottom: 10px !important;
+  margin-top: 10px !important;
+  border-radius: 20px
 }
 
 ::-webkit-scrollbar {

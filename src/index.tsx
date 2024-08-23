@@ -11,9 +11,17 @@ const root = ReactDOM.createRoot(
 );
 
 // useLayoutEffect
+// let win
+let islocal = window.location.href.includes("local") || window.location.href.includes("127.0.0.1")
+let config 
+if (!islocal) {
+  config = {
+    basename:'/mini-form-generator/'
+  }
+}
 
 root.render(
-  <BrowserRouter basename='/mini-form-generator/'>
+  <BrowserRouter {...config}>
    <App />
    </BrowserRouter>
 );

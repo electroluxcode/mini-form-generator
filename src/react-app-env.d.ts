@@ -3,6 +3,8 @@
 // 我真是天才
 // declare module '@/*'
 declare module './*'
+declare module '*.svg'
+
 declare module '@reduxjs/toolkit'
 
 declare module 'react-redux'

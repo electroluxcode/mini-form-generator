@@ -4,7 +4,7 @@ import React from "react";
 import {omit}  from "lodash-es";
 
 export const PlaceHolderSetting: React.FC<SettingProps & RadioGroupProps> = (props) => {
-  const componentProps  = omit(props,["name","label","className","style","defaultValue"])
+  const componentProps  = omit(props,["name","label","className","style","defaultValue","compKey"])
   const [value,setValue] = React.useState(props.defaultValue)
   const onChange = (e:any) => {
     setValue(e.target.value)
