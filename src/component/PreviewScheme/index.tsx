@@ -8,12 +8,18 @@ import eyeopen from "@/asset/image/eye-open.svg"
 // 引入 组件
 import { SchemaFieldComp } from '@/component/Material';
 import { message, Modal } from "antd";
-import { useState } from "react";
+import { useState ,useContext} from "react";
+import { eventbus } from "@/utils/EventBus";
 // 递归组件
 const RecursiveComp: React.FC<RecursiveCompProps> | React.ElementType | any = ({ item, customComponent }: RecursiveCompProps) => {
   const { children, data, refOption, ...rest } = item;
   let { Component } = item
-
+  const [isShow, setIsShow] = useState(true)
+  const onClick = () => {
+    message.success("删除组件")
+    setIsShow(false)
+    eventbus.emit("delete",data)
+  }
   let registerComp
   registerComp = {
     ...SchemaFieldComp["components"],
@@ -33,32 +39,32 @@ const RecursiveComp: React.FC<RecursiveCompProps> | React.ElementType | any = ({
   }
   if (typeof Component === 'object') {
     if (!Component.key) {
-      // return <>nokey</>
+      return <>nokey</>
     }
     return <>{Component}</>
   }
   if (!Component) {
-    return null;
+    return <>no component</>;
   }
   // 渲染 children 的递归调用
   const childElements = children ? (
     children.map((child) => {
-      return isFunction(RecursiveComp) ?
-        RecursiveComp({ item: child, key: child?.data?.compKey || Math.random(), customComponent }) :
-        <RecursiveComp item={child} key={child?.data?.compKey || Math.random()} customComponent={customComponent} />
+      console.log("isFunction(RecursiveComp).", isFunction(RecursiveComp))
+      return <RecursiveComp item={child} key={child?.data?.compKey } customComponent={customComponent} />
+        
     })
   ) : null;
   if (isMain) {
     return <div key={Math.random()}>
-
       <Component  {...data}  >
         {childElements}
       </Component>
     </div>
   }
-  const [isShow, setIsShow] = useState(true)
+ 
   return <div key={Math.random()}>
-    {isShow &&
+    {
+      isShow &&
       <div className={styles.formitem}>
         <div className={styles.dragpanel}>
           <div className={styles.panellist} >
@@ -69,10 +75,7 @@ const RecursiveComp: React.FC<RecursiveCompProps> | React.ElementType | any = ({
                 centered: true
               })
             }} />
-            <img className={styles.panelimg} src={svg} alt="" onClick={() => {
-              message.success("删除组件")
-              setIsShow(false)
-            }} />
+            <img className={styles.panelimg} src={svg} alt="" onClick={onClick} />
           </div>
         </div>
         <Component  {...data} key={data?.compKey || compKey} >
@@ -91,8 +94,7 @@ const Comp: React.FC<CompProps> = ({ data, customComponent }) => {
   return (
     <>
       {data && data.length && Array.isArray(data) && data.map((item, index) => {
-
-        return <RecursiveComp customComponent={customComponent} key={item?.data?.compKey || index} item={item} />
+        return <RecursiveComp customComponent={customComponent} key={index} item={item} />
       })}
     </>
   );

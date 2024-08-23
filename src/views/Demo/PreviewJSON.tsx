@@ -1,6 +1,6 @@
 import { CompProps } from "@/component/SettingScheme/type";
 
-export const CollapseJSON: CompProps["data"] = [{
+export const PreviewJSON: CompProps["data"] = [{
     Component: "Form",
     children: [
         {
@@ -115,9 +115,6 @@ export const CollapseJSON: CompProps["data"] = [{
         },
         {
             Component: "Operate"
-            ,data:{
-                compKey:5512
-            }
         }
     ],
     data: {
@@ -125,73 +122,3 @@ export const CollapseJSON: CompProps["data"] = [{
     }
 }]
 
-
-export const JSON1: CompProps["data"] = [{
-    Component: "Form",
-    children: [
-        {
-            // 时间选择器
-            Component: "DatePicker",
-            data: {
-                label: "我是日期选择器",
-                name: "datePicker",
-                type: "datetime"
-            }
-        },
-        {
-            Component: "Radio",
-            data: {
-                label: "我是单选框",
-                name: "radio",
-                options: [{
-                    label: "选项一",
-                    value: "1"
-                }, {
-                    label: "选项二",
-                    value: "2"
-                }],
-                defaultValue: "1"
-            }
-        },
-       
-        {
-            //颜色选择器
-            Component: "ColorPicker",
-            data: {
-                label: "我是颜色选择器",
-                name: "ColorPicker",
-            }
-        },
-        {
-            // switch
-            Component: "Switch",
-            data: {
-                label: "我是开关",
-                name: "switch",
-                defaultValue: true
-            }
-        }, {
-            // slider
-            Component: "Slider",
-            data: {
-                label: "我是滑块",
-                name: "slider",
-            }
-            
-        },
-        {
-            Component: "test",
-            data: {
-                compKey:"552"
-            }
-        },
-        {
-            Component: "Operate",
-            data: {
-                compKey:"55"
-            }
-        }
-    ],
-    data: {
-    }
-}]

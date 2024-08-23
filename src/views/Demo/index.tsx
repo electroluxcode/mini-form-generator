@@ -1,11 +1,12 @@
 
 import Comp from '@/component/PreviewScheme'
 
-import React from 'react'
-import { CollapseJSON, JSON1 } from "./CollapseJSON"
+import React, { useContext, useEffect } from 'react'
+import { PreviewJSON } from "./PreviewJSON"
 import { Button, Input, message } from 'antd'
 import { isObject } from "lodash-es"
 import styles from "./index.module.less"
+import { eventbus } from '@/utils/EventBus'
 const TestComp = () => {
   return <div style={{ marginBottom: "16px" }} key={"959"}>
     我是自定义组件：传入customComponent数组可自定义你自己的元素
@@ -20,28 +21,60 @@ let customComponent = {
 
   }
 }
+// dfs递归children 寻找指定的name
+const deleteByName:any = (options, name) => {
+  if(!options){
+    return
+  }
+  
+  // console.log("ci:", options,name)
+  for (let i = 0; i < options.length; i++) {
+        if(options[i]?.data?.name == name){
+          options.splice(i,1)
+          return options
+      }
+      if (options[i].children) {
+          options[i].children = deleteByName(options[i].children,name) ?? [];
+      }
+  }
+  return options;
+};
 
+import { createContext } from "react";
+
+
+let EventbusContext = createContext(eventbus)
+
+export {EventbusContext}
 export default function Test() {
-  let [textState, setTextState] = React.useState(JSON.stringify(CollapseJSON, null, 2))
+  let [textState, setTextState] = React.useState(JSON.stringify(PreviewJSON, null, 2))
   const [isError, setIsError] = React.useState(false)
+  let EventbusContextCase = useContext(EventbusContext)
+
+ 
+  const onChange = (e) => {
+    try {
+      if (isObject(JSON.parse(e.target.value))) {
+        setTextState(e.target.value)
+        setIsError(false)
+      }
+    } catch {
+      setTextState(e.target.value)
+      setIsError(true)
+    }
+
+  }
+  EventbusContextCase.on("delete",(e = {})=>{
+    const data = deleteByName(JSON.parse(textState),e?.name)
+    setTextState(JSON.stringify(data, null, 2))
+    // setTextState(JSON(data))
+    console.log("data", data,PreviewJSON)
+  })
   return (
     <>
+   
       <div className={styles.container}>
-        {/* <div className={
-          styles.item1
-        }>
-          <Button style={{padding:"2px 5px","margin":"0 2px"}} onClick={()=>{
-            const jsonString = JSON.stringify(JSON1, null, 2); // 格式化 JSON
-            const textarea = document.createElement('textarea');
-            textarea.value = jsonString;
-            document.body.appendChild(textarea);
-            textarea.select();
-            document.execCommand('copy');
-            document.body.removeChild(textarea);
-            message.success("复制成功")
-          }}>复制预设1</Button>
-          
-        </div> */}
+       
         <div className={styles.bgsize} >
           <div className={styles.bgtitle}>
             组件选择
@@ -58,22 +91,14 @@ export default function Test() {
           <Input.TextArea style={{
             height: "90%"
           }}
-            onChange={(e) => {
-              try {
-                if (isObject(JSON.parse(e.target.value))) {
-                  setTextState(e.target.value)
-                  setIsError(false)
-                }
-              } catch {
-                setTextState(e.target.value)
-                setIsError(true)
-              }
-
+            onChange={(e)=>{
+              onChange(e)
             }
             }
             value={textState}></Input.TextArea>
         </div>
       </div>
+      
     </>
 
   )
