@@ -13,7 +13,7 @@ import DatePicker from "./DatePickerSetting"
 import TimePicker from "./TimePickSetting"
 import Operate from "./OperateSetting"
 import Rate from "./RateSetting";
-
+import PreviewSetting from "./PreviewSetting";
 export const createSchemaField = (prop)=>{
   return prop
 }
@@ -33,6 +33,6 @@ export const SchemaFieldComp = createSchemaField({
         Slider,
         DatePicker,
         CheckBox,
-        TimePicker,Operate
+        TimePicker,Operate,PreviewSetting
     }
 })

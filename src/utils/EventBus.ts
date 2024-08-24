@@ -1,8 +1,12 @@
-import { useRef } from "react";
+interface cacheType {
+    targetpos?: any,
+}
 
 class EventBus<Events extends string> {
     private eventBus: any={};
-
+    cache: cacheType = {
+        
+    }
     on<K extends  Events>(name: K, event: Function) {
         if (!this.eventBus[name]) {
             this.eventBus[name] = [event];
@@ -28,7 +32,7 @@ class EventBus<Events extends string> {
 }
 
 
-let eventbus = new EventBus<"delete">()
+let eventbus = new EventBus<"delete" | "drag">()
 // test.emit("test1",45)
 // test.on("test1",()=>{
 

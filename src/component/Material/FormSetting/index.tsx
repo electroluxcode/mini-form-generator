@@ -6,10 +6,10 @@ import { useContext } from 'react';
 // import { formContext } from "../Context";
 import { createContext } from "react";
 const formContext = createContext<FormInstance | null>(null)
-export const PlaceHolderSetting: React.FC<SettingProps & FormProps | any> = (props) => {
+export const FormSetting: React.FC<SettingProps & FormProps | any> = (props) => {
 
   const [form] = Form.useForm();
-
+  console.log(props,"ddddddddd")
   
   const onReset = () => {
     form.resetFields();
@@ -39,4 +39,4 @@ export const PlaceHolderSetting: React.FC<SettingProps & FormProps | any> = (pro
 export {
   formContext
 }
-export default PlaceHolderSetting;
+export default FormSetting;

@@ -1,6 +1,5 @@
 /// <reference types="react-scripts" />
 
-// 我真是天才
 // declare module '@/*'
 declare module './*'
 declare module '*.svg'

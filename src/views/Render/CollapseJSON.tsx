@@ -1,4 +1,4 @@
-import { CompProps } from "@/component/SettingScheme/type";
+import { CompProps } from "@/component/RenderScheme/type";
 
 export const CollapseJSON: CompProps["data"] = [{
     Component: "Form",

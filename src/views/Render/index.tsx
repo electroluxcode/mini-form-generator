@@ -1,5 +1,5 @@
 
-import Comp from '@/component/SettingScheme'
+import Comp from '@/component/RenderScheme'
 
 import React from 'react'
 import { CollapseJSON,JSON1 } from "./CollapseJSON"
