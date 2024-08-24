@@ -4,7 +4,7 @@ import PreviewScheme from '@/component/PreviewScheme'
 import React, { useContext, useEffect } from 'react'
 import { PreviewJSON } from "./PreviewJSON"
 import {CompPickJSON} from "./CompPickJSON"
-import { Button, Input, message } from 'antd'
+import { Input  } from 'antd'
 import { isObject } from "lodash-es"
 import styles from "./index.module.less"
 import { eventbus } from '@/utils/EventBus'
@@ -90,6 +90,7 @@ export default function Test() {
     // console.log("data", data,PreviewJSON)
   })
   eventbus.on("drag",(e = {})=>{
+    // @ts-ignore
     const data = addByName(JSON.parse(textState),(eventbus.cache["targetpos"] ?? {}).name,e?.data)
     setTextState(JSON.stringify(data, null, 2))
   })

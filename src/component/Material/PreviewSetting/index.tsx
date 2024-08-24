@@ -20,7 +20,6 @@ let customComponent = {
 }
 
 export const PlaceHolderSetting: React.FC<SettingProps & InputProps> = (props) => {
-  const componentProps = omit(props, ["name", "label", "className", "style", "defaultValue"])
   let ParamContextInstance = useContext(ParamContext)
   const onClick = () => {
     if(ParamContextInstance[0]?.Component !=="Form"){
