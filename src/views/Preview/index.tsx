@@ -4,7 +4,7 @@ import PreviewScheme from '@/component/PreviewScheme'
 import React, { useContext, useEffect } from 'react'
 import { PreviewJSON } from "./PreviewJSON"
 import {CompPickJSON} from "./CompPickJSON"
-import { Input  } from 'antd'
+import { Button, Input, message  } from 'antd'
 import { isObject } from "lodash-es"
 import styles from "./index.module.less"
 import { eventbus } from '@/utils/EventBus'
@@ -63,6 +63,7 @@ const addByName:any = (options, name,data) => {
 };
 
 import CompPickScheme from '@/component/CompPickScheme'
+import { JSON1, JSON2 } from './TemplateJSON'
 
 
 export default function Test() {
@@ -108,7 +109,29 @@ export default function Test() {
         </div>
         <div className={styles.preview}>
           <div style={{fontSize:"12px", marginBottom:"5px"}}>
-            预渲染区域，可在 /render路由查看渲染效果,也可点击查看渲染。右侧的组件json中的data字段按照antd对应组件的属性。请自行查阅文档
+            json预设，可复制到右边，具体json含义参考antd文档。 
+            
+          <Button style={{padding:"2px 5px","margin":"0 2px"}} onClick={()=>{
+            const jsonString = JSON.stringify(JSON1, null, 2); // 格式化 JSON
+            const textarea = document.createElement('textarea');
+            textarea.value = jsonString;
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textarea);
+            message.success("复制成功")
+          }}>复制预设1</Button>
+          
+          <Button style={{padding:"2px 5px","margin":"0 2px"}} onClick={()=>{
+            const jsonString = JSON.stringify(JSON2, null, 2); // 格式化 JSON
+            const textarea = document.createElement('textarea');
+            textarea.value = jsonString;
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textarea);
+            message.success("复制成功")
+          }}>复制预设2</Button>
           </div>
           <PreviewScheme data={isError ? [] : JSON.parse(textState)} customComponent={customComponent}></PreviewScheme>
         </div>
