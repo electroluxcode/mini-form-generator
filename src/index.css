@@ -44,8 +44,8 @@ code {
   flex-direction: row-reverse;
   font-size: 14px;
   line-height: 20px;
-  padding-left: 20px !important;
-  padding-right: 15px !important;
+  padding-left: 26px !important;
+  padding-right: 5px !important;
   border: none !important;
   background: white !important
 }
