@@ -6,108 +6,35 @@ export const PreviewJSON: CompProps["data"] = [{
     children: [
         {
             Component: "Input",
+            guard: `({item,value,form})=>
+            {       
+                  const itemContainer = form.getFieldsValue()
+                    if(itemContainer.input11 === "noshow" && item.data.name === "input11"){
+                        return false
+                }
+                    
+            }`,
             data: {
-                label: "我是输入框",
-                name: "input",
+                label: "我是输入框11",
+                name: "input11",
+                placeholder: "我是输入框placeholder",
+                compKey:genRandomKey(),
+            },
+        },{
+            Component: "Input",
+            guard: `({item,value,form})=>{
+                console.log({item,value,form})
+            }
+            `,
+            data: {
+                label: "我是输入框99",
+                name: "input99",
                 placeholder: "我是输入框placeholder",
                 compKey:genRandomKey(),
             },
         },
-        // {
-        //     Component: "Select",
-        //     data: {
-        //         label: "我是选择框",
-        //         name: "select",
-        //         compKey:"Select-1111111",
-        //         options: [{
-        //             label: "选项一",
-        //             value: "1"
-        //         }, {
-        //             label: "选项二",
-        //             value: "2"
-        //         }],
-        //         defaultValue: "1"
-        //     },
-        // },
-      
-        // {
-        //     Component: "CheckBox",
-        //     data: {
-        //         compKey:"CheckBox-1111111",
-        //         label: "我是多选框",
-        //         name: "checkbox",
-        //         options: [{
-        //             label: "选项一",
-        //             value: "1"
-        //         }, {
-        //             label: "选项二",
-        //             value: "2"
-        //         }],
-
-
-        //     }
-        // },
-        // {
-        //     // 时间选择器
-        //     Component: "TimePicker",
-        //     data: {
-        //         compKey:"TimePicker-1111111",
-        //         label: "我是时间选择器",
-        //         name: "TimePicker",
-        //     }
-        // },
         
-        // {
-        //     // rate
-        //     Component: "Rate",
-        //     data: {
-        //         compKey:"Rate-1111111",
-        //         label: "我是评分",
-        //         name: "rate",
-        //         value: 3
-        //     }
-        // },
-        // {
-        //     // cascader
-        //     Component: "Cascader",
-        //     data: {
-        //         compKey:"Cascader-1111111",
-        //         label: "我是级联选择器",
-        //         name: "cascader",
-        //         options: [
-        //             {
-        //                 value: "zhejiang",
-        //                 label: "Zhejiang",
-        //                 children: [
-        //                     {
-        //                         value: "hangzhou",
-        //                         label: "Hangzhou",
-        //                         children: [
-        //                             {
-        //                                 value: "xihu",
-        //                                 label: "West Lake"
-        //                             }
-        //                         ]
-        //                     }
-        //                 ]
-        //             },
-        //             {
-        //                 value: "jiangsu",
-        //             }
-        //         ]
-        //     }
-        // },
-        // {
-        //     // slider
-        //     Component: "Slider",
-        //     data: {
-        //         compKey:"Slider-1111111",
-        //         label: "我是滑块",
-        //         name: "slider",
-        //         value: 50
-        //     }
-            
-        // },
+        
         {
             Component: "test",
             data:{

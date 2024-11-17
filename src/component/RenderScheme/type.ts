@@ -8,7 +8,8 @@ export interface RecursiveCompProps {
   };
   customComponent:{
     Component: React.ComponentType<any> | string | any; // 组件类型
-  }
+  },
+  [key: string]: any; // 允许其他额外的属性
 }
 
 // 主组件的 Props 类型

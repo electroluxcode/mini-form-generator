@@ -32,7 +32,7 @@ class EventBus<Events extends string> {
 }
 
 
-let eventbus = new EventBus<"delete" | "drag">()
+let eventbus = new EventBus<"delete" | "drag" | "formChange">()
 // test.emit("test1",45)
 // test.on("test1",()=>{
 

@@ -5,11 +5,11 @@ import { omit } from "lodash-es";
 import { useContext } from 'react';
 // import { formContext } from "../Context";
 import { createContext } from "react";
+import { eventbus } from "@/utils/EventBus";
 const formContext = createContext<FormInstance | null>(null)
 export const FormSetting: React.FC<SettingProps & FormProps | any> = (props) => {
 
   const [form] = Form.useForm();
-  console.log(props,"ddddddddd")
   
   const onReset = () => {
     form.resetFields();
@@ -23,10 +23,17 @@ export const FormSetting: React.FC<SettingProps & FormProps | any> = (props) => 
   const tailLayout = {
     wrapperCol: { offset: 8, span: 16 },
   };
+ 
+  const onChange = () => {
+    props.formGet(form)
+    eventbus.emit("formChange", null)
+    return form.getFieldsValue()
+  }
+  // const 
   return (
     <>
       <formContext.Provider value={form}>
-        <Form form={form} >
+        <Form form={form} onChange={onChange} >
 
           {props.children}
 
